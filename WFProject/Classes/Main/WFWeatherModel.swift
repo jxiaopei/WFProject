@@ -17,7 +17,7 @@ struct WFWeatherModel : Decodable {
     var isClose : Bool {
         didSet(isClose){
 //            self.isClose = isClose
-            self.cellRowHeight = isClose ? 83 : 250
+            self.cellRowHeight = isClose ? 93 : 260
         }
     }
 }

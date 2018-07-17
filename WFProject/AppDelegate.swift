@@ -17,10 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame:MainBounds)
         self.window?.backgroundColor = UIColor.white
+        
         let storyboard = UIStoryboard.init(name: "WFWeatherListViewController", bundle: nil)
         let vc = storyboard.instantiateInitialViewController()
+        let nav = UINavigationController.init(rootViewController: vc!)
 //        let vc = WFWeatherListViewController()
-        self.window?.rootViewController = vc;
+        self.window?.rootViewController = nav;
         self.window?.makeKeyAndVisible()
 //        WFCityDataTool.shared.getCityData()
         return true

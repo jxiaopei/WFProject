@@ -35,13 +35,13 @@ class WFWeatherListViewController: UITableViewController {
 //
 //        }
         for _ in 1...10{
-            let dataModel = WFWeatherModel.init(cellRowHeight: 83, isClose: true)
+            let dataModel = WFWeatherModel.init(cellRowHeight: 93, isClose: true)
             cityNameArr.append(dataModel)
         }
     }
     
     func setupUI()  {
-        tableView.estimatedRowHeight = 83
+        tableView.estimatedRowHeight = 93
         tableView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .none
@@ -90,13 +90,13 @@ extension WFWeatherListViewController {
         var dataModel = cityNameArr[indexPath.row]
         if dataModel.isClose {
             dataModel.isClose = false
-//            dataModel.cellRowHeight = 250
+            dataModel.cellRowHeight = 260
             cityNameArr[indexPath.row] = dataModel
             cell.unfold(true, animated: true, completion: nil)
             duration = 0.5
         } else {
             dataModel.isClose = true
-//            dataModel.cellRowHeight = 83
+            dataModel.cellRowHeight = 93
             cityNameArr[indexPath.row] = dataModel
             cell.unfold(false, animated: true, completion: nil)
             duration = 0.8
