@@ -11,7 +11,7 @@ import FoldingCell
 
 class WFWeatherListViewController: UITableViewController {
     
-    var cityNameArr : [WFWeatherModel] = []
+    var cityNameArr : [WFCityDataModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,22 +21,22 @@ class WFWeatherListViewController: UITableViewController {
     }
     
     func getData() {
-//        WFNetWorkTool.shared.GET(urlString: "http://samples.openweathermap.org/data/2.5/forecast?id=524901&appid=b6907d289e10d714a6e88b30761fae22", parameters: nil, showHUD: true, success: {(respone) in
-//            print(respone as Any)
-//            do{
-////                let dataModel   = try JSONDecoder().decode(WFWeatherModel.self, from: respone as! Data )
-////                self.cityNameArr = dataModel.list
-////                print(self.cityNameArr)
-//            }catch let error {
-//                print(error)
-//            }
-//
-//        }) { (error) in
-//
-//        }
-        for _ in 1...10{
-            let dataModel = WFWeatherModel.init(cellRowHeight: 93, isClose: true)
-            cityNameArr.append(dataModel)
+        WFNetWorkTool.shared.GET(urlString: "http://samples.openweathermap.org/data/2.5/forecast?id=524901&appid=\(WFAppId)", parameters: nil, showHUD: true, success: {(respone) in
+            print(respone as Any)
+            let dict = respone as! [String : Any]
+            let data = try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+           
+            do{
+                let dataModel = try JSONDecoder().decode(WFWeatherModel.self,  from: data)
+                let cityModel = WFCityDataModel.init(cellRowHeight: 93, isClose: true, dataModel: dataModel)
+                self.cityNameArr.append(cityModel)
+                self.tableView.reloadData()
+            }catch let error {
+                print(error)
+            }
+
+        }) { (error) in
+
         }
     }
     

@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard.init(name: "WFWeatherListViewController", bundle: nil)
         let vc = storyboard.instantiateInitialViewController()
         let nav = UINavigationController.init(rootViewController: vc!)
-//        let vc = WFWeatherListViewController()
         self.window?.rootViewController = nav;
         self.window?.makeKeyAndVisible()
 //        WFCityDataTool.shared.getCityData()

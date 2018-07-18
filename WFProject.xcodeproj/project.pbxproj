@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		7A39B5E0FBAEF992FC938AFD /* libPods-WFProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA838DD09257A33D8A1286C /* libPods-WFProject.a */; };
 		CE394CA620F4E8BF00D80026 /* WFWeatherListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE394CA520F4E8BF00D80026 /* WFWeatherListViewController.swift */; };
-		CE394CA820F4FE5E00D80026 /* CityDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE394CA720F4FE5E00D80026 /* CityDataModel.swift */; };
+		CE394CA820F4FE5E00D80026 /* WFCityDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE394CA720F4FE5E00D80026 /* WFCityDataModel.swift */; };
 		CE394CAA20F4FEAF00D80026 /* WFWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE394CA920F4FEAF00D80026 /* WFWeatherModel.swift */; };
 		CE591DB620FDA4DE00931B6E /* WFWeatherListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE591DB520FDA4DE00931B6E /* WFWeatherListViewController.storyboard */; };
 		CE591DB820FDC53A00931B6E /* WFWeatherListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE591DB720FDC53A00931B6E /* WFWeatherListTableViewCell.swift */; };
+		CE591DBB20FF222600931B6E /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE591DBA20FF222600931B6E /* UIColor+Extension.swift */; };
 		CE5F346620F49FA400F861AC /* city.list0.json in Resources */ = {isa = PBXBuildFile; fileRef = CE5F345B20F49FA400F861AC /* city.list0.json */; };
 		CE5F346720F49FA400F861AC /* city.list1.json in Resources */ = {isa = PBXBuildFile; fileRef = CE5F345C20F49FA400F861AC /* city.list1.json */; };
 		CE5F346820F49FA400F861AC /* city.list10.json in Resources */ = {isa = PBXBuildFile; fileRef = CE5F345D20F49FA400F861AC /* city.list10.json */; };
@@ -33,7 +34,6 @@
 		CEEB57D320E7B157002E7132 /* WFAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB57D220E7B157002E7132 /* WFAppManager.swift */; };
 		CEEB57DC20E8D77F002E7132 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEB57DB20E8D77E002E7132 /* Reachability.m */; };
 		CEEB57DE20E8E269002E7132 /* BFDefineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB57DD20E8E269002E7132 /* BFDefineData.swift */; };
-		CEEB57E020E8F082002E7132 /* MainPageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB57DF20E8F082002E7132 /* MainPageData.swift */; };
 		CEEB57E620E90C32002E7132 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB57E520E90C32002E7132 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,10 +42,11 @@
 		2F42D10886B66383A58202A1 /* Pods-WFProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WFProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-WFProject/Pods-WFProject.release.xcconfig"; sourceTree = "<group>"; };
 		9D03F14BDFEBCC11378F3A20 /* Pods-WFProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WFProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WFProject/Pods-WFProject.debug.xcconfig"; sourceTree = "<group>"; };
 		CE394CA520F4E8BF00D80026 /* WFWeatherListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFWeatherListViewController.swift; sourceTree = "<group>"; };
-		CE394CA720F4FE5E00D80026 /* CityDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDataModel.swift; sourceTree = "<group>"; };
+		CE394CA720F4FE5E00D80026 /* WFCityDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFCityDataModel.swift; sourceTree = "<group>"; };
 		CE394CA920F4FEAF00D80026 /* WFWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFWeatherModel.swift; sourceTree = "<group>"; };
 		CE591DB520FDA4DE00931B6E /* WFWeatherListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WFWeatherListViewController.storyboard; sourceTree = "<group>"; };
 		CE591DB720FDC53A00931B6E /* WFWeatherListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFWeatherListTableViewCell.swift; sourceTree = "<group>"; };
+		CE591DBA20FF222600931B6E /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		CE5F345B20F49FA400F861AC /* city.list0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list0.json; sourceTree = "<group>"; };
 		CE5F345C20F49FA400F861AC /* city.list1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list1.json; sourceTree = "<group>"; };
 		CE5F345D20F49FA400F861AC /* city.list10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list10.json; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		CEEB57DA20E8D77E002E7132 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		CEEB57DB20E8D77E002E7132 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		CEEB57DD20E8E269002E7132 /* BFDefineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFDefineData.swift; sourceTree = "<group>"; };
-		CEEB57DF20E8F082002E7132 /* MainPageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageData.swift; sourceTree = "<group>"; };
 		CEEB57E520E90C32002E7132 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +102,14 @@
 				1BA838DD09257A33D8A1286C /* libPods-WFProject.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE591DB920FF21F700931B6E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				CE591DBA20FF222600931B6E /* UIColor+Extension.swift */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		CE5F345A20F49FA400F861AC /* json */ = {
@@ -158,6 +166,7 @@
 		CEEB57CC20E7AD7A002E7132 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CE591DB920FF21F700931B6E /* Categories */,
 				CEEB57CF20E7AF6A002E7132 /* DefineData */,
 				CEEB57CE20E7AED9002E7132 /* Tool */,
 				CEEB57CD20E7AD84002E7132 /* Main */,
@@ -168,8 +177,7 @@
 		CEEB57CD20E7AD84002E7132 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				CEEB57DF20E8F082002E7132 /* MainPageData.swift */,
-				CE394CA720F4FE5E00D80026 /* CityDataModel.swift */,
+				CE394CA720F4FE5E00D80026 /* WFCityDataModel.swift */,
 				CE394CA920F4FEAF00D80026 /* WFWeatherModel.swift */,
 				CEEB57E520E90C32002E7132 /* MainViewController.swift */,
 				CE394CA520F4E8BF00D80026 /* WFWeatherListViewController.swift */,
@@ -341,13 +349,13 @@
 				CEEB57E620E90C32002E7132 /* MainViewController.swift in Sources */,
 				CEEB57DE20E8E269002E7132 /* BFDefineData.swift in Sources */,
 				CEEB57D120E7AFE0002E7132 /* WFNetWorkTool.swift in Sources */,
+				CE591DBB20FF222600931B6E /* UIColor+Extension.swift in Sources */,
 				CE394CA620F4E8BF00D80026 /* WFWeatherListViewController.swift in Sources */,
-				CE394CA820F4FE5E00D80026 /* CityDataModel.swift in Sources */,
+				CE394CA820F4FE5E00D80026 /* WFCityDataModel.swift in Sources */,
 				CEEB57D320E7B157002E7132 /* WFAppManager.swift in Sources */,
 				CEEB57B720E7A985002E7132 /* AppDelegate.swift in Sources */,
 				CE5F347220F4B21F00F861AC /* WFCityDataTool.swift in Sources */,
 				CEEB57DC20E8D77F002E7132 /* Reachability.m in Sources */,
-				CEEB57E020E8F082002E7132 /* MainPageData.swift in Sources */,
 				CE591DB820FDC53A00931B6E /* WFWeatherListTableViewCell.swift in Sources */,
 				CE394CAA20F4FEAF00D80026 /* WFWeatherModel.swift in Sources */,
 			);

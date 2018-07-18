@@ -38,7 +38,7 @@ extension WFNetWorkTool{
         
 //        if showHUD { MBProgressHUD.showAdded(to: keyWindow!, animated: true) }
         
-        WFNetWorkTool.netWorkManager.get(urlString, parameters: parameters, progress:nil, success:{(task, respone) in
+        WFNetWorkTool.netWorkManager.get(urlString, parameters: parameters, progress:nil, success:{(task, respone) in  
             
 //            if showHUD { MBProgressHUD.hide(for: keyWindow!, animated: true) }
             success!(respone)

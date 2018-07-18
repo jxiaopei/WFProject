@@ -19,6 +19,18 @@ public let ScreenWidth = UIScreen.main.bounds.size.width
 public let ScreenHeight = UIScreen.main.bounds.size.height
 /// 屏幕的bounds
 public let MainBounds = UIScreen.main.bounds
+/// 字体
+func TextFont(size:CGFloat) -> UIFont {
+    return UIFont.init(name: "PingFangSC-Regular", size: size)!
+}
 
 public let UMengAppKey = "5ab20dad8f4a9d18c1000199"
 public let jPushAppKey = "a3771f6afae83fb7044aace4v"
+
+//颜色
+public let MainColorBlue = UIColor.colorWithHexString("568FFE")
+public let MainColorBlack = UIColor.black
+public let MainColorLightGray = UIColor.lightGray
+public let MainColorGray = UIColor.gray
+
+
