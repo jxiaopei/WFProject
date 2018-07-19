@@ -12,6 +12,8 @@ import FoldingCell
 class WFWeatherListViewController: UITableViewController {
     
     var cityNameArr : [WFCityDataModel] = []
+    let closeCellHeight: CGFloat = adjustMeasure(measure: 147.5)
+    let openCellHeight: CGFloat = adjustMeasure(measure: 410)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,31 +24,33 @@ class WFWeatherListViewController: UITableViewController {
     
     func getData() {
         WFNetWorkTool.shared.GET(urlString: "http://samples.openweathermap.org/data/2.5/forecast?id=524901&appid=\(WFAppId)", parameters: nil, showHUD: true, success: {(respone) in
-            print(respone as Any)
+//            print(respone as Any)
+            self.tableView.mj_header.endRefreshing()
             let dict = respone as! [String : Any]
             let data = try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
            
             do{
                 let dataModel = try JSONDecoder().decode(WFWeatherModel.self,  from: data)
-                let cityModel = WFCityDataModel.init(cellRowHeight: 93, isClose: true, dataModel: dataModel)
+                let cityModel = WFCityDataModel.init(cellRowHeight: self.closeCellHeight, isClose: true, dataModel: dataModel)
                 self.cityNameArr.append(cityModel)
                 self.tableView.reloadData()
             }catch let error {
                 print(error)
+                self.tableView.mj_header.endRefreshing()
             }
 
         }) { (error) in
-
+            self.tableView.mj_header.endRefreshing()
         }
     }
     
     func setupUI()  {
-        tableView.estimatedRowHeight = 93
+        tableView.estimatedRowHeight = closeCellHeight
         tableView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .none
         tableView.mj_header = MJRefreshStateHeader.init(refreshingBlock: {
-            
+            self.getData()
         })
         tableView.mj_footer = MJRefreshAutoStateFooter.init(refreshingBlock: {
             
@@ -90,13 +94,13 @@ extension WFWeatherListViewController {
         var dataModel = cityNameArr[indexPath.row]
         if dataModel.isClose {
             dataModel.isClose = false
-            dataModel.cellRowHeight = 260
+            dataModel.cellRowHeight = openCellHeight
             cityNameArr[indexPath.row] = dataModel
             cell.unfold(true, animated: true, completion: nil)
             duration = 0.5
         } else {
             dataModel.isClose = true
-            dataModel.cellRowHeight = 93
+            dataModel.cellRowHeight = closeCellHeight
             cityNameArr[indexPath.row] = dataModel
             cell.unfold(false, animated: true, completion: nil)
             duration = 0.8
@@ -110,7 +114,7 @@ extension WFWeatherListViewController {
     
     override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let dataModel = cityNameArr[indexPath.row]
-        print(dataModel.cellRowHeight)
+//        print(dataModel.cellRowHeight)
         return dataModel.cellRowHeight
     }
     

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7A39B5E0FBAEF992FC938AFD /* libPods-WFProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA838DD09257A33D8A1286C /* libPods-WFProject.a */; };
+		2ACDAFA8BDF3831D28CFE576 /* Pods_WFProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C16466EAC4C1E0B32F393D0D /* Pods_WFProject.framework */; };
 		CE394CA620F4E8BF00D80026 /* WFWeatherListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE394CA520F4E8BF00D80026 /* WFWeatherListViewController.swift */; };
 		CE394CA820F4FE5E00D80026 /* WFCityDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE394CA720F4FE5E00D80026 /* WFCityDataModel.swift */; };
 		CE394CAA20F4FEAF00D80026 /* WFWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE394CA920F4FEAF00D80026 /* WFWeatherModel.swift */; };
@@ -38,9 +38,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1BA838DD09257A33D8A1286C /* libPods-WFProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WFProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F42D10886B66383A58202A1 /* Pods-WFProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WFProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-WFProject/Pods-WFProject.release.xcconfig"; sourceTree = "<group>"; };
 		9D03F14BDFEBCC11378F3A20 /* Pods-WFProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WFProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WFProject/Pods-WFProject.debug.xcconfig"; sourceTree = "<group>"; };
+		C16466EAC4C1E0B32F393D0D /* Pods_WFProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WFProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE394CA520F4E8BF00D80026 /* WFWeatherListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFWeatherListViewController.swift; sourceTree = "<group>"; };
 		CE394CA720F4FE5E00D80026 /* WFCityDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFCityDataModel.swift; sourceTree = "<group>"; };
 		CE394CA920F4FEAF00D80026 /* WFWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFWeatherModel.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A39B5E0FBAEF992FC938AFD /* libPods-WFProject.a in Frameworks */,
+				2ACDAFA8BDF3831D28CFE576 /* Pods_WFProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,9 +99,43 @@
 		491ABB5C94BF1F09C7C035B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1BA838DD09257A33D8A1286C /* libPods-WFProject.a */,
+				C16466EAC4C1E0B32F393D0D /* Pods_WFProject.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C9BD30972100E84C00F40278 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CE591DB720FDC53A00931B6E /* WFWeatherListTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		C9BD30982100E86600F40278 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CEEB57E520E90C32002E7132 /* MainViewController.swift */,
+				CE394CA520F4E8BF00D80026 /* WFWeatherListViewController.swift */,
+				CE591DB520FDA4DE00931B6E /* WFWeatherListViewController.storyboard */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C9BD30992100E87300F40278 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE394CA720F4FE5E00D80026 /* WFCityDataModel.swift */,
+				CE394CA920F4FEAF00D80026 /* WFWeatherModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C9BD309A2100E89700F40278 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CE591DB920FF21F700931B6E /* Categories */ = {
@@ -177,12 +211,10 @@
 		CEEB57CD20E7AD84002E7132 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				CE394CA720F4FE5E00D80026 /* WFCityDataModel.swift */,
-				CE394CA920F4FEAF00D80026 /* WFWeatherModel.swift */,
-				CEEB57E520E90C32002E7132 /* MainViewController.swift */,
-				CE394CA520F4E8BF00D80026 /* WFWeatherListViewController.swift */,
-				CE591DB520FDA4DE00931B6E /* WFWeatherListViewController.storyboard */,
-				CE591DB720FDC53A00931B6E /* WFWeatherListTableViewCell.swift */,
+				C9BD309A2100E89700F40278 /* Views */,
+				C9BD30992100E87300F40278 /* Models */,
+				C9BD30982100E86600F40278 /* Controllers */,
+				C9BD30972100E84C00F40278 /* Cells */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -228,6 +260,7 @@
 				CEEB57B020E7A985002E7132 /* Frameworks */,
 				CEEB57B120E7A985002E7132 /* Resources */,
 				AE8DB36FEB403E5302FC7630 /* [CP] Copy Pods Resources */,
+				368817260BD0238FCE085F0B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -315,6 +348,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		368817260BD0238FCE085F0B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WFProject/Pods-WFProject-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/FoldingCell/FoldingCell.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/RAMReel/RAMReel.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoldingCell.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RAMReel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WFProject/Pods-WFProject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AE8DB36FEB403E5302FC7630 /* [CP] Copy Pods Resources */ = {
@@ -504,13 +567,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FW9N8Z45X2;
+				DEVELOPMENT_TEAM = 49VKTSN8PQ;
 				INFOPLIST_FILE = WFProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com..WFProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WFProject/WFProject-Bridging-Header.h";
@@ -527,13 +587,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FW9N8Z45X2;
+				DEVELOPMENT_TEAM = 49VKTSN8PQ;
 				INFOPLIST_FILE = WFProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com..WFProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WFProject/WFProject-Bridging-Header.h";

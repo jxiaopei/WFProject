@@ -18,25 +18,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="weatherListCell" rowHeight="349" id="uh0-AP-5S4" customClass="WFWeatherListTableViewCell" customModule="WFProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="349"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="weatherListCell" rowHeight="554" id="uh0-AP-5S4" customClass="WFWeatherListTableViewCell" customModule="WFProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="554"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uh0-AP-5S4" id="bZo-FV-58p">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="348.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="553.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YoE-KQ-PQT" customClass="RotatedView" customModule="FoldingCell">
-                                            <rect key="frame" x="10" y="5" width="355" height="83"/>
+                                            <rect key="frame" x="10" y="5" width="355" height="137.5"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="83" id="8TC-ks-hKz"/>
+                                                <constraint firstAttribute="height" constant="137.5" id="8TC-ks-hKz"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wyg-7o-StV">
-                                            <rect key="frame" x="10" y="94" width="355" height="250"/>
+                                            <rect key="frame" x="10" y="148.5" width="355" height="400"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="250" id="8We-98-KxA"/>
+                                                <constraint firstAttribute="height" constant="400" id="8We-98-KxA"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -46,7 +46,7 @@
                                         <constraint firstItem="wyg-7o-StV" firstAttribute="leading" secondItem="bZo-FV-58p" secondAttribute="leading" constant="10" id="QbU-U6-od7"/>
                                         <constraint firstItem="YoE-KQ-PQT" firstAttribute="leading" secondItem="bZo-FV-58p" secondAttribute="leading" constant="10" id="YAv-mh-43J"/>
                                         <constraint firstAttribute="trailing" secondItem="wyg-7o-StV" secondAttribute="trailing" constant="10" id="hZZ-Js-cLc"/>
-                                        <constraint firstItem="wyg-7o-StV" firstAttribute="top" secondItem="bZo-FV-58p" secondAttribute="top" constant="94" id="m4b-pP-3jZ"/>
+                                        <constraint firstItem="wyg-7o-StV" firstAttribute="top" secondItem="bZo-FV-58p" secondAttribute="top" constant="148.5" id="m4b-pP-3jZ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <userDefinedRuntimeAttributes>
