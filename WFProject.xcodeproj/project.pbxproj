@@ -14,6 +14,7 @@
 		CE591DB620FDA4DE00931B6E /* WFWeatherListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE591DB520FDA4DE00931B6E /* WFWeatherListViewController.storyboard */; };
 		CE591DB820FDC53A00931B6E /* WFWeatherListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE591DB720FDC53A00931B6E /* WFWeatherListTableViewCell.swift */; };
 		CE591DBB20FF222600931B6E /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE591DBA20FF222600931B6E /* UIColor+Extension.swift */; };
+		CE591E44210191E000931B6E /* WFWeatherImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE591E43210191E000931B6E /* WFWeatherImageManager.swift */; };
 		CE5F346620F49FA400F861AC /* city.list0.json in Resources */ = {isa = PBXBuildFile; fileRef = CE5F345B20F49FA400F861AC /* city.list0.json */; };
 		CE5F346720F49FA400F861AC /* city.list1.json in Resources */ = {isa = PBXBuildFile; fileRef = CE5F345C20F49FA400F861AC /* city.list1.json */; };
 		CE5F346820F49FA400F861AC /* city.list10.json in Resources */ = {isa = PBXBuildFile; fileRef = CE5F345D20F49FA400F861AC /* city.list10.json */; };
@@ -47,6 +48,7 @@
 		CE591DB520FDA4DE00931B6E /* WFWeatherListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WFWeatherListViewController.storyboard; sourceTree = "<group>"; };
 		CE591DB720FDC53A00931B6E /* WFWeatherListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFWeatherListTableViewCell.swift; sourceTree = "<group>"; };
 		CE591DBA20FF222600931B6E /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		CE591E43210191E000931B6E /* WFWeatherImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFWeatherImageManager.swift; sourceTree = "<group>"; };
 		CE5F345B20F49FA400F861AC /* city.list0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list0.json; sourceTree = "<group>"; };
 		CE5F345C20F49FA400F861AC /* city.list1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list1.json; sourceTree = "<group>"; };
 		CE5F345D20F49FA400F861AC /* city.list10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list10.json; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				CEEB57D920E8D77E002E7132 /* Reachability */,
 				CEEB57D020E7AFE0002E7132 /* WFNetWorkTool.swift */,
 				CEEB57D220E7B157002E7132 /* WFAppManager.swift */,
+				CE591E43210191E000931B6E /* WFWeatherImageManager.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -259,7 +262,6 @@
 				CEEB57AF20E7A985002E7132 /* Sources */,
 				CEEB57B020E7A985002E7132 /* Frameworks */,
 				CEEB57B120E7A985002E7132 /* Resources */,
-				AE8DB36FEB403E5302FC7630 /* [CP] Copy Pods Resources */,
 				368817260BD0238FCE085F0B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -380,28 +382,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WFProject/Pods-WFProject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AE8DB36FEB403E5302FC7630 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WFProject/Pods-WFProject-resources.sh",
-				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
-				"${PODS_ROOT}/RAMReel/RAMReel/Roboto/Apache License.txt",
-				"${PODS_ROOT}/RAMReel/RAMReel/Roboto/Roboto-Light.ttf",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Apache License.txt",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Roboto-Light.ttf",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WFProject/Pods-WFProject-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -415,6 +395,7 @@
 				CE591DBB20FF222600931B6E /* UIColor+Extension.swift in Sources */,
 				CE394CA620F4E8BF00D80026 /* WFWeatherListViewController.swift in Sources */,
 				CE394CA820F4FE5E00D80026 /* WFCityDataModel.swift in Sources */,
+				CE591E44210191E000931B6E /* WFWeatherImageManager.swift in Sources */,
 				CEEB57D320E7B157002E7132 /* WFAppManager.swift in Sources */,
 				CEEB57B720E7A985002E7132 /* AppDelegate.swift in Sources */,
 				CE5F347220F4B21F00F861AC /* WFCityDataTool.swift in Sources */,
@@ -567,11 +548,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 49VKTSN8PQ;
+				DEVELOPMENT_TEAM = 96HGC4VX38;
 				INFOPLIST_FILE = WFProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com..WFProject;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.WFProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WFProject/WFProject-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -587,11 +571,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 49VKTSN8PQ;
+				DEVELOPMENT_TEAM = 96HGC4VX38;
 				INFOPLIST_FILE = WFProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com..WFProject;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.WFProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WFProject/WFProject-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

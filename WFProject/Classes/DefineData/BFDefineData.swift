@@ -11,14 +11,37 @@ import UIKit
 
 public let baseURL = "http://api.jinribifenjiekou.com"
 
+public let url = "https://samples.openweathermap.org/data/2.5/weather?id=2172797&appid=b6907d289e10d714a6e88b30761fae22"
+
+public let F_or_C = UserDefaults.standard.bool(forKey: "FahrenheiOrCelsius")
+
+//摄氏度 华氏度转换
+func CelsiusOrFahrenheit(degree: CGFloat) -> String{
+    if F_or_C  {
+        return  String(format: "%.0f",((degree - 273.15) * 9/5 + 32)) + "℉"
+    }else{
+        return  String(format: "%.0f",degree - 273.15) + "℃"
+    }
+}
+
+//时间戳转时间字符串
+func TimeIntervalToTimeString(timeInterval : Int,formatter: String = "MM-dd HH:mm") -> String{
+    let timeSta:TimeInterval = TimeInterval(timeInterval)
+    let dfmatter = DateFormatter()
+    dfmatter.dateFormat = "MM-dd HH:mm"
+    let date = NSDate(timeIntervalSince1970: timeSta)
+    return dfmatter.string(from: date as Date)
+}
+
 ///appId
-public let WFAppId = "b6907d289e10d714a6e88b30761fae22"
+public let WFAppId = "8c0e04b52e6da9e67c51a102d6269a60"
 /// 屏幕的宽度
 public let ScreenWidth = UIScreen.main.bounds.size.width
 /// 屏幕的高度
 public let ScreenHeight = UIScreen.main.bounds.size.height
 /// 屏幕的bounds
 public let MainBounds = UIScreen.main.bounds
+
 /// 字体
 func TextFont(size:CGFloat) -> UIFont {
     return UIFont.init(name: "PingFangSC-Regular", size: size)!

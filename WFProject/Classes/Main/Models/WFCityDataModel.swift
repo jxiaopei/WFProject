@@ -8,17 +8,13 @@
 
 struct WFCityDataModel{
     var cellRowHeight :CGFloat
-    var isClose : Bool {
-        didSet(isClose){
-            self.cellRowHeight = isClose ? 93 : 260
-        }
-    }
-    var dataModel : WFWeatherModel
+    var isClose : Bool
+    var dataModel : WFWeatherCurrentDataModel
 }
 
-struct WFWeatherCurrentDataModel {
+struct WFWeatherCurrentDataModel :Decodable{
     var coord : CityCoord
-    var weather : WFWeatherDataModel
+    var weather : [WFWeatherDataModel]
     var base : String
     var main : WFWeatherCurrentMianModel
     var visibility : Int

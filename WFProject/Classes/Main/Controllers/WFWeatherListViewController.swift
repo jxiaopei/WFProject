@@ -13,7 +13,7 @@ class WFWeatherListViewController: UITableViewController {
     
     var cityNameArr : [WFCityDataModel] = []
     let closeCellHeight: CGFloat = adjustMeasure(measure: 147.5)
-    let openCellHeight: CGFloat = adjustMeasure(measure: 410)
+    let openCellHeight: CGFloat = adjustMeasure(measure: 380)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,17 +21,21 @@ class WFWeatherListViewController: UITableViewController {
         setupUI()
         getData()
     }
-    
+    //"http://samples.openweathermap.org/data/2.5/forecast?id=524901&appid=\(WFAppId)"
     func getData() {
-        WFNetWorkTool.shared.GET(urlString: "http://samples.openweathermap.org/data/2.5/forecast?id=524901&appid=\(WFAppId)", parameters: nil, showHUD: true, success: {(respone) in
+        
+        let parameters = ["q" : "Beijing", "APPID" : WFAppId]
+        
+        WFNetWorkTool.shared.GET(urlString: "https://api.openweathermap.org/data/2.5/weather", parameters: parameters, showHUD: true, success: {(respone) in
 //            print(respone as Any)
             self.tableView.mj_header.endRefreshing()
             let dict = respone as! [String : Any]
             let data = try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
            
             do{
-                let dataModel = try JSONDecoder().decode(WFWeatherModel.self,  from: data)
+                let dataModel = try JSONDecoder().decode(WFWeatherCurrentDataModel.self,  from: data)
                 let cityModel = WFCityDataModel.init(cellRowHeight: self.closeCellHeight, isClose: true, dataModel: dataModel)
+                print("date ===\(Date())")
                 self.cityNameArr.append(cityModel)
                 self.tableView.reloadData()
             }catch let error {
@@ -123,7 +127,7 @@ extension WFWeatherListViewController {
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
         cell.durationsForExpandedState = durations
         cell.durationsForCollapsedState = durations
-        cell.dataModel = cityNameArr[indexPath.row]
+        cell.model = cityNameArr[indexPath.row]
         return cell
     }
 }
