@@ -11,5 +11,15 @@ target 'WFProject' do
 	pod 'SDWebImage'
 	pod 'SnapKit'
 	pod 'RAMReel'
-	pod 'FoldingCell'  
+	pod 'FoldingCell'
+    pod 'lottie-ios'
+#    pod 'SwiftyJSON'
+
+    #友盟基础库
+#    pod 'UMCCommon'
+#    pod 'UMCSecurityPlugins'
+#    #统计
+#    pod 'UMCAnalytics'
+#
+#    pod 'JPush'
 end

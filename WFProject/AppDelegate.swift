@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,13 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame:MainBounds)
         self.window?.backgroundColor = UIColor.white
-        
-        let storyboard = UIStoryboard.init(name: "WFWeatherListViewController", bundle: nil)
-        let vc = storyboard.instantiateInitialViewController()
-        let nav = UINavigationController.init(rootViewController: vc!)
+
+        let vc = WFLoadingViewController()
+        let nav = UINavigationController.init(rootViewController: vc)
         self.window?.rootViewController = nav;
+        
+        //友盟
+//        WFAppManager.settingUMeng()
+        //极光
+//        configureJPush(launchOptions: launchOptions)
+        
         self.window?.makeKeyAndVisible()
 //        WFCityDataTool.shared.getCityData()
+    
         return true
     }
 
@@ -38,7 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        // 角标设置为零
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -51,4 +59,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+//extension AppDelegate: JPUSHRegisterDelegate {
+//
+//    func configureJPush(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+//        let entity = JPUSHRegisterEntity()
+//        entity.types = 0|1|2
+//        JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
+//        JPUSHService.setup(withOption: launchOptions, appKey: jPushAppKey, channel: "App Store", apsForProduction: false, advertisingIdentifier: nil)
+//    }
+//
+//    @available(iOS 10.0, *)
+//    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
+//        let userInfo = notification.request.content.userInfo
+//        if (notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))! {
+//            JPUSHService.handleRemoteNotification(userInfo)
+//        }
+//    }
+//
+//    @available(iOS 10.0, *)
+//    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
+//        let userInfo = response.notification.request.content.userInfo
+//        if (response.notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))! {
+//            JPUSHService.handleRemoteNotification(userInfo)
+//        }
+//        completionHandler()
+//    }
+//
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//        JPUSHService.handleRemoteNotification(userInfo)
+//        completionHandler(UIBackgroundFetchResult.newData)
+//    }
+//
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+//        JPUSHService.handleRemoteNotification(userInfo)
+//    }
+//
+//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+//        JPUSHService.registerDeviceToken(deviceToken)
+//    }
+//}
 

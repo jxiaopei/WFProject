@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+public let isTest =  0  //1 是测试 0是正常
+
+public var isSettingLocation = 0 //选择地点
+
+public let defaultsCityIdArr : [String] = ["2643743"]
+
 public let baseURL = "http://api.jinribifenjiekou.com"
 
 public let url = "https://samples.openweathermap.org/data/2.5/weather?id=2172797&appid=b6907d289e10d714a6e88b30761fae22"
@@ -33,6 +39,10 @@ func TimeIntervalToTimeString(timeInterval : Int,formatter: String = "MM-dd HH:m
     return dfmatter.string(from: date as Date)
 }
 
+///请求参数
+public let APPID_A = "67f311b5e8d4f90345b77fa4111c1e4e"
+public let APPID_A_IDENTIFIER = Bundle.main.infoDictionary!["CFBundleIdentifier"]
+
 ///appId
 public let WFAppId = "8c0e04b52e6da9e67c51a102d6269a60"
 /// 屏幕的宽度
@@ -41,6 +51,11 @@ public let ScreenWidth = UIScreen.main.bounds.size.width
 public let ScreenHeight = UIScreen.main.bounds.size.height
 /// 屏幕的bounds
 public let MainBounds = UIScreen.main.bounds
+
+///判断是否为iPhone
+public let is_iphone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone
+///判断是否为iPhoneX
+public let is_iphoneX = is_iphone && ScreenHeight == 812
 
 /// 字体
 func TextFont(size:CGFloat) -> UIFont {

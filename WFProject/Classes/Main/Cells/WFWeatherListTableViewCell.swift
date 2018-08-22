@@ -10,29 +10,58 @@ import UIKit
 import FoldingCell
 import SnapKit
 
-class WFWeatherListTableViewCell: FoldingCell {
+class WFWeatherListTableViewCell: FoldingCell,UICollectionViewDelegate,UICollectionViewDataSource{
+    
+    var btnClickBlock:((_ cityName: String)->())?
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return sevenDayWeatherArr.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sevenDayCollectionViewCell", for: indexPath) as! WFSevenDayWeatherCollectionViewCell
+        return cell
+    }
+    
+    var sevenDayWeatherArr : [WFSevenDaysWeatherModel] = []
     
     var model : WFCityDataModel! {
         didSet{
-            let imgName = WFWeatherImageManager.getWeatherCellBackgroundImage(id: (model.dataModel.weather.first?.id)!)
+            let imgName = WFWeatherImageManager.getWeatherCellBackgroundImage(id: (model.dataModel?.weather?.first?.id)!)
             self.backImg.image = UIImage(named: imgName)
-            self.backImg1.image = UIImage(named: imgName + "_open")
-            self.tempLabel.text = CelsiusOrFahrenheit(degree: CGFloat(model.dataModel.main.temp))
-            self.tempLabel1.text = CelsiusOrFahrenheit(degree: CGFloat(model.dataModel.main.temp))
-            self.descriptionLabel.text = model.dataModel.weather.first?.description
-            self.descriptionLabel1.text = model.dataModel.weather.first?.description
-            self.cityLabel.text = model.dataModel.name
-            self.cityLabel1.text = model.dataModel.name
-            self.dateLabel.text = "last update time : " + TimeIntervalToTimeString(timeInterval: model.dataModel.dt)
-            self.dateLabel1.text = "last update time : " + TimeIntervalToTimeString(timeInterval: model.dataModel.dt)
-            self.iconImg.image = UIImage(named: WFWeatherImageManager.getWeatherIcon(id: (model.dataModel.weather.first?.id)!, icon: (model.dataModel.weather.first?.icon)!))
-            self.windLabel.text = String(format: "%.0f", model.dataModel.wind.speed)  + "m/s"
-            self.pressureLabel.text = String(format: "%.0f", model.dataModel.main.pressure) + "hpa"
-            self.humidityLabel.text = String(format: "%.0f", model.dataModel.main.humidity) + "%"
-            self.sunsetLabel.text = "sunset : " + TimeIntervalToTimeString(timeInterval: model.dataModel.sys.sunset, formatter: "HH:mm")
-            self.sunriseLabel.text = "sunrise : " + TimeIntervalToTimeString(timeInterval: model.dataModel.sys.sunrise, formatter: "HH:mm")
+//            self.backImg1.image = UIImage(named: imgName + "_open")
+            self.backImg1.setImageToBlur(UIImage.init(named: imgName + "_open"), blurRadius: kLBBlurredImageDefaultBlurRadius, completionBlock: nil)
+            self.tempLabel.text =  String(format: "%.0f", (model.dataModel?.main?.temp)!) + "℃"// CelsiusOrFahrenheit(degree: CGFloat((model.dataModel?.main?.temp)!))
+            self.tempLabel1.text = String(format: "%.0f", (model.dataModel?.main?.temp)!) + "℃"
+            self.descriptionLabel.text = model.dataModel?.weather?.first?.description
+            self.descriptionLabel1.text = model.dataModel?.weather?.first?.description
+            self.cityLabel.text = model.dataModel?.name
+            self.cityLabel1.text = model.dataModel?.name
+            self.dateLabel.text = "last update time : " + TimeIntervalToTimeString(timeInterval: (model.dataModel?.dt!)!)
+            self.dateLabel1.text = "last update time : " + TimeIntervalToTimeString(timeInterval: (model.dataModel?.dt!)!)
+            self.iconImg.image = UIImage(named: WFWeatherImageManager.getWeatherIcon(id: (model.dataModel?.weather?.first?.id)!, icon: (model.dataModel?.weather?.first?.icon)!))
+            self.windLabel.text = String(format: "%.0f", (model.dataModel?.wind?.speed)!)  + "m/s"
+            self.pressureLabel.text = String(format: "%.0f", (model.dataModel?.main?.pressure)!) + "hpa"
+            self.humidityLabel.text = String(format: "%.0f", (model.dataModel?.main?.humidity)!) + "%"
+            self.sunsetLabel.text = "sunset : " + TimeIntervalToTimeString(timeInterval: (model.dataModel?.sys?.sunset)!, formatter: "HH:mm")
+            self.sunriseLabel.text = "sunrise : " + TimeIntervalToTimeString(timeInterval: (model.dataModel?.sys?.sunrise)!, formatter: "HH:mm")
         }
     }
+    
+    lazy var sevenDayCollectionView : UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 50, height: 80.0)
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: ScreenWidth-40, height: 80), collectionViewLayout: layout)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = UIColor.clear
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.register(WFSevenDayWeatherCollectionViewCell.self, forCellWithReuseIdentifier: "sevenDayCollectionViewCell")
+        return collectionView
+    }()
+    
+    
     
     lazy var cityLabel: UILabel = {
         let label = UILabel()
@@ -80,13 +109,9 @@ class WFWeatherListTableViewCell: FoldingCell {
     
     lazy var backImg1 : UIImageView = {
         let imgView = UIImageView()
-        imgView.image = UIImage.init(named: "cell_back_sunny_open")
         imgView.layer.cornerRadius = 20
         imgView.layer.masksToBounds = true
-        let effect = UIBlurEffect(style:.light) //light //extraLight
-        let effectView = UIVisualEffectView(effect: effect)
-        imgView.addSubview(effectView)
-        effectView.frame = CGRect(x: 0, y: 0, width: ScreenWidth - 20, height: 400)
+        imgView.setImageToBlur(UIImage.init(named: "cell_back_sunny_open"), blurRadius: kLBBlurredImageDefaultBlurRadius, completionBlock: nil)
         return imgView
     }()
     
@@ -185,6 +210,22 @@ class WFWeatherListTableViewCell: FoldingCell {
         label.font = TextFont(size: 18)
         return label
     }()
+    
+    lazy var detailBtn : UIButton = {
+        let btn = UIButton()
+        btn.setTitle("Show More...", for: .normal)
+        btn.setTitleColor(MainColorWhite, for: .normal)
+        btn.layer.masksToBounds = true
+        btn.layer.cornerRadius = 8
+        btn.addTarget(self, action:#selector(didClickDetailBtn) , for: .touchUpInside)
+        return btn
+    }()
+    
+    @objc func didClickDetailBtn() {
+        if(btnClickBlock != nil){
+            btnClickBlock!((model.dataModel?.name)!)
+        }
+    }
     
     override func awakeFromNib() {
         setupUI()
@@ -318,6 +359,13 @@ class WFWeatherListTableViewCell: FoldingCell {
             make.centerY.equalTo(humidityIconImg)
         }
         
+        containerView.addSubview(detailBtn)
+        detailBtn.snp.makeConstraints { (make) in
+            make.height.equalTo(44)
+            make.bottom.equalTo(-20)
+            make.left.equalTo(20)
+            make.right.equalTo(-20)
+        }
     }
     
     override func animationDuration(_ itemIndex: NSInteger, type _: FoldingCell.AnimationType) -> TimeInterval {

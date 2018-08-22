@@ -9,22 +9,27 @@
 struct WFCityDataModel{
     var cellRowHeight :CGFloat
     var isClose : Bool
-    var dataModel : WFWeatherCurrentDataModel
+    var dataModel : WFWeatherCurrentDataModel?
+}
+
+struct WFCityListDataModel :Decodable{
+    var cnt : Int?
+    var list : [WFWeatherCurrentDataModel]?
 }
 
 struct WFWeatherCurrentDataModel :Decodable{
-    var coord : CityCoord
-    var weather : [WFWeatherDataModel]
-    var base : String
-    var main : WFWeatherCurrentMianModel
-    var visibility : Int
-    var wind : WFWeatherWindModel
-    var clouds : WFWeatherCloudsModel
-    var dt : Int
-    var sys : WFWeatherCurrentSysModel
-    var id : Int
-    var name : String
-    var cod : Int
+    var coord : CityCoord?
+    var weather : [WFWeatherDataModel]?
+    var base : String?
+    var main : WFWeatherCurrentMianModel?
+    var visibility : Int?
+    var wind : WFWeatherWindModel?
+    var clouds : WFWeatherCloudsModel?
+    var dt : Int?
+    var sys : WFWeatherCurrentSysModel?
+    var id : Int?
+    var name : String?
+    var cod : Int?
 }
 
 struct WFWeatherCurrentSysModel : Decodable{
