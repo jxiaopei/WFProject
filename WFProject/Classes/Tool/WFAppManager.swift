@@ -8,48 +8,48 @@
 
 import Foundation
 
-let api = "http://slavex.3dabuliu.com/app/info"
+//let api = "http://slavex.3dabuliu.com/app/info"
 
 class WFAppManager{
     
     let dataArray :[String] = []
-    
-    class func checkVersion(success: (([String]?)->Void)?, failure:((Error?)->Void)?){
-        
-        let parameters = ["a":APPID_A,"b":"2"]
-        do {
-            let jsonData =  try JSONSerialization.data(withJSONObject: parameters, options: [])
-            let jsonString = jsonData.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
-            let signString = jsonString.appending("123456")
-            let sign = signString.md5()
-            let newPara = ["object":jsonString,"sign":sign]
-            
-            WFNetWorkTool.shared.POST(urlString: api.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!, parameters: newPara, showHUD: true, success: {(respone) in
-                
-                let dict : [String : Any] = respone as! [String : Any]
-                print(dict)
-        
-
-                if dict["data"] is NSNull {
-                    failure!(nil)
-                    return
-                }else{
-                    let data = dict["data"]
-                    let dataDict = data as! [String : Any]
-                    let dataString = dataDict ["app_url"]! as! String
-                    success!(dealWithDataString(dataString: dataString))
-                }
-                
-            }) { (error) in
-                print(error)
-                failure!(error)
-            }
-        }catch let error {
-            print(error)
-            failure!(error)
-        }
-       
-    }
+//    
+//    class func checkVersion(success: (([String]?)->Void)?, failure:((Error?)->Void)?){
+//        
+//        let parameters = ["a":APPID_A,"b":"2"]
+//        do {
+//            let jsonData =  try JSONSerialization.data(withJSONObject: parameters, options: [])
+//            let jsonString = jsonData.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
+//            let signString = jsonString.appending("123456")
+//            let sign = signString.md5()
+//            let newPara = ["object":jsonString,"sign":sign]
+//            
+//            WFNetWorkTool.shared.POST(urlString: api.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!, parameters: newPara, showHUD: true, success: {(respone) in
+//                
+//                let dict : [String : Any] = respone as! [String : Any]
+//                print(dict)
+//        
+//
+//                if dict["data"] is NSNull {
+//                    failure!(nil)
+//                    return
+//                }else{
+//                    let data = dict["data"]
+//                    let dataDict = data as! [String : Any]
+//                    let dataString = dataDict ["app_url"]! as! String
+//                    success!(dealWithDataString(dataString: dataString))
+//                }
+//                
+//            }) { (error) in
+//                print(error)
+//                failure!(error)
+//            }
+//        }catch let error {
+//            print(error)
+//            failure!(error)
+//        }
+//       
+//    }
     
     class func getLaunchImage()-> UIImage{
         
@@ -108,6 +108,25 @@ class WFAppManager{
         return stringArr
     }
     
+    class func Alert(title:String,message:String? = nil,confirm:String,cancel:String,confirmActin:(()->())?,cancelAction:(()->())?) {
+        
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let confirmAct = UIAlertAction(title: confirm, style: .default) { (action) in
+            confirmActin!()
+        }
+        alertVC.addAction(confirmAct)
+        
+        if(cancel.compare("").rawValue != 0){
+            let cancelAct = UIAlertAction(title: cancel, style: .cancel) { (action) in
+                cancelAction!()
+            }
+            alertVC.addAction(cancelAct)
+        }
+        
+        self.getCurrentVC().present(alertVC, animated: true, completion: nil)
+        
+    }
+    
     class func getCurrentVC() -> UIViewController {
         var result : UIViewController?
         var window = UIApplication.shared.keyWindow
@@ -132,7 +151,7 @@ class WFAppManager{
                 if(result?.isKind(of: UINavigationController.self))!{
                     result = (nextResponder as! UINavigationController).visibleViewController
                 }
-            }else if(result?.isKind(of: UINavigationController.self))!{
+            }else if(nextResponder?.isKind(of: UINavigationController.self))!{
                 result = (nextResponder as! UINavigationController).visibleViewController
             }else{
                 result = nextResponder as? UIViewController

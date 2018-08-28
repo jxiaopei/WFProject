@@ -1,5 +1,5 @@
 platform :ios, '8.0'
-	pod 'RAMReel'
+#    pod 'RAMReel'
 	pod 'FoldingCell' 
 use_frameworks!
 
@@ -10,10 +10,9 @@ target 'WFProject' do
 	pod 'MJRefresh' 
 	pod 'SDWebImage'
 	pod 'SnapKit'
-	pod 'RAMReel'
 	pod 'FoldingCell'
     pod 'lottie-ios'
-#    pod 'SwiftyJSON'
+    pod 'RAMPaperSwitch'
 
     #友盟基础库
 #    pod 'UMCCommon'
@@ -21,5 +20,7 @@ target 'WFProject' do
 #    #统计
 #    pod 'UMCAnalytics'
 #
-#    pod 'JPush'
+
+    pod 'JPush'
+    
 end

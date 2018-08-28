@@ -25,8 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //友盟
 //        WFAppManager.settingUMeng()
-        //极光
-//        configureJPush(launchOptions: launchOptions)
+//        极光
+        configureJPush(launchOptions: launchOptions)
         
         self.window?.makeKeyAndVisible()
 //        WFCityDataTool.shared.getCityData()
@@ -60,43 +60,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-//extension AppDelegate: JPUSHRegisterDelegate {
-//
-//    func configureJPush(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
-//        let entity = JPUSHRegisterEntity()
-//        entity.types = 0|1|2
-//        JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
-//        JPUSHService.setup(withOption: launchOptions, appKey: jPushAppKey, channel: "App Store", apsForProduction: false, advertisingIdentifier: nil)
-//    }
-//
-//    @available(iOS 10.0, *)
-//    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
-//        let userInfo = notification.request.content.userInfo
-//        if (notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))! {
-//            JPUSHService.handleRemoteNotification(userInfo)
-//        }
-//    }
-//
-//    @available(iOS 10.0, *)
-//    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
-//        let userInfo = response.notification.request.content.userInfo
-//        if (response.notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))! {
-//            JPUSHService.handleRemoteNotification(userInfo)
-//        }
-//        completionHandler()
-//    }
-//
-//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-//        JPUSHService.handleRemoteNotification(userInfo)
-//        completionHandler(UIBackgroundFetchResult.newData)
-//    }
-//
-//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-//        JPUSHService.handleRemoteNotification(userInfo)
-//    }
-//
-//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-//        JPUSHService.registerDeviceToken(deviceToken)
-//    }
-//}
+extension AppDelegate: JPUSHRegisterDelegate {
+
+    func configureJPush(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+        let entity = JPUSHRegisterEntity()
+        entity.types = 0|1|2
+        JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
+        JPUSHService.setup(withOption: launchOptions, appKey: jPushAppKey, channel: "App Store", apsForProduction: false, advertisingIdentifier: nil)
+    }
+
+    @available(iOS 10.0, *)
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
+        let userInfo = notification.request.content.userInfo
+        if (notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))! {
+            JPUSHService.handleRemoteNotification(userInfo)
+        }
+    }
+
+    @available(iOS 10.0, *)
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
+        let userInfo = response.notification.request.content.userInfo
+        if (response.notification.request.trigger?.isKind(of: UNPushNotificationTrigger.self))! {
+            JPUSHService.handleRemoteNotification(userInfo)
+        }
+        completionHandler()
+    }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        JPUSHService.handleRemoteNotification(userInfo)
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        JPUSHService.handleRemoteNotification(userInfo)
+    }
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        JPUSHService.registerDeviceToken(deviceToken)
+    }
+}
 

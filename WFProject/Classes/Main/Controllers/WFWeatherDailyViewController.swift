@@ -8,7 +8,8 @@
 
 import Foundation
 
-class WFWeatherDailyViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource{
+
+class WFWeatherDailyViewController: ViewController ,UITableViewDelegate,UITableViewDataSource{
     
     var dataModel : WFWeatherModel?
     var cityName : String?

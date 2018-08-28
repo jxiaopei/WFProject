@@ -19,15 +19,37 @@ public let baseURL = "http://api.jinribifenjiekou.com"
 
 public let url = "https://samples.openweathermap.org/data/2.5/weather?id=2172797&appid=b6907d289e10d714a6e88b30761fae22"
 
-public let F_or_C = UserDefaults.standard.bool(forKey: "FahrenheiOrCelsius")
+func firstOpenApp() -> Bool {
+    return !UserDefaults.standard.bool(forKey: "firstOpenApp")
+}
+
+func F_or_C() -> Bool {
+    return UserDefaults.standard.bool(forKey: "FahrenheiOrCelsius")
+}
 
 //摄氏度 华氏度转换
-func CelsiusOrFahrenheit(degree: CGFloat) -> String{
-    if F_or_C  {
+func CelsiusOrFahrenheit(degree: Float) -> String{
+    if F_or_C()  {
         return  String(format: "%.0f",((degree - 273.15) * 9/5 + 32)) + "℉"
     }else{
         return  String(format: "%.0f",degree - 273.15) + "℃"
     }
+}
+
+func MainViewCelsiusOrFahrenheit(degree: Float) -> String{
+    if F_or_C()  {
+        return  String(format: "%.0f",(degree * 9/5 + 32)) + "℉"
+    }else{
+        return  String(format: "%.0f", degree) + "℃"
+    }
+}
+
+func NotificationSetting() -> Bool{
+    return UserDefaults.standard.bool(forKey: "NotificationCenter")
+}
+
+func isIOS8() -> Bool{
+    return Double(UIDevice.current.systemVersion)! >= 8.0
 }
 
 //时间戳转时间字符串

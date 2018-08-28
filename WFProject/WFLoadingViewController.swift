@@ -34,7 +34,7 @@ class WFLoadingViewController: UIViewController {
     
     func getData(){
         let networkType =  WFNetWorkTool.shared.currentNetworkType()
-        let appsTestNum = WFNetWorkTool.shared.checkAppsTesting()
+//        let appsTestNum = WFNetWorkTool.shared.checkAppsTesting()
         if(networkType == 0){
             //提示无网
             WFHubTool.hub(view: view, text: "No network responding")
@@ -45,19 +45,19 @@ class WFLoadingViewController: UIViewController {
                     subview.removeFromSuperview()
                 }
             }
-            let networkCarrier = WFNetWorkTool.shared.checkNetworkCarrierType()
-            if((networkCarrier != 5 && appsTestNum) && isTest == 1){
-                WFAppManager.checkVersion(success: { (dataArr) in
-                    let alert = WFDataManagerAlert()
-                    self.present(alert, animated: true, completion: nil)
-                    alert.dataArr = dataArr
-                }) { (error) in
-                    self.weatherVCJumpAction()
-                }
-                
-            }else{
+//            let networkCarrier = WFNetWorkTool.shared.checkNetworkCarrierType()
+//            if((networkCarrier != 5 && appsTestNum) && isTest == 1){
+//                WFAppManager.checkVersion(success: { (dataArr) in
+//                    let alert = WFDataManagerAlert()
+//                    self.present(alert, animated: true, completion: nil)
+//                    alert.dataArr = dataArr
+//                }) { (error) in
+//                    self.weatherVCJumpAction()
+//                }
+//                
+//            }else{
                 weatherVCJumpAction()
-            }
+//            }
         }
     }
     

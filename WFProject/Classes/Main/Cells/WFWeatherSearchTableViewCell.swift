@@ -14,7 +14,7 @@ class WFWeatherSearchTableViewCell : UITableViewCell{
         didSet{
             let imgName = WFWeatherImageManager.getWeatherCellBackgroundImage(id: (model?.weather?.first?.id)!)
             self.backImg.setImageToBlur(UIImage.init(named: imgName + "_open"), blurRadius: kLBBlurredImageDefaultBlurRadius, completionBlock: nil)
-            self.tempLabel.text = CelsiusOrFahrenheit(degree: CGFloat((model?.main?.temp)!))
+            self.tempLabel.text = CelsiusOrFahrenheit(degree: (model?.main?.temp)!)
             self.descriptionLabel.text = model?.weather?.first?.description
             self.cityLabel.text = model?.name
             self.dateLabel.text = "last update time : " + TimeIntervalToTimeString(timeInterval: (model?.dt!)!)
