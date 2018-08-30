@@ -8,7 +8,7 @@
 
 import Lottie
 
-class WFSearchViewController : UIViewController,UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource {
+class WFSearchViewController : ViewController,UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +47,7 @@ class WFSearchViewController : UIViewController,UISearchBarDelegate,UITableViewD
             let idStr = "\(sss)"
            
         
-            var cityId =  UserDefaults.standard.value(forKey: "cityId") as! String//
+            var cityId =  UserDefaults.standard.value(forKey: "cityId") as! String
             let cityIdArr = cityId.components(separatedBy: ",")
             
             if(cityIdArr.contains(idStr)){
@@ -61,8 +61,11 @@ class WFSearchViewController : UIViewController,UISearchBarDelegate,UITableViewD
                 make.size.equalTo(CGSize(width: 100, height: 100))
             }
             addBtnAnimation.play { (isPlaying) in
-                
-                cityId.append( "," + idStr)
+                if(cityId.count > 0){
+                    cityId.append( "," + idStr)
+                }else{
+                    cityId.append(idStr)
+                }
                 UserDefaults.standard.set(cityId, forKey: "cityId")
                 self.navigationController?.popViewController(animated: true)
                 

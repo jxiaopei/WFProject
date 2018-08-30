@@ -7,30 +7,27 @@
 //
 
 import UIKit
-import WFDataManagerAlert
-
 
 class ViewController: UIViewController {
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let networkType =  WFNetWorkTool.share.currentNetworkType()
-//        if(networkType == 0){
-//            //提示无网
-//        }else{
-//            let networkCarrier = WFNetWorkTool.share.checkNetworkCarrierType()
-//            if(networkCarrier != 5){
-//                WFAppManager.checkVersion(success: {(dataArr) in
-//
-//                    let alert = WFDataManagerAlert()
-//                    self.present(alert, animated: true, completion: nil)
-//                    alert.dataArr = dataArr
-//                })
-//            }
-//        }
+        setupBackNavigationItem()
 
+
+    }
+    
+    func setupBackNavigationItem() {
+        
+        let leftBtn = UIButton(type: .custom)
+        leftBtn.setImage(UIImage(named: "bar_back"), for: .normal)
+        leftBtn.addTarget(self, action: #selector(leftBtnClick), for: .touchUpInside)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftBtn)
+    }
+    
+    @objc func leftBtnClick(){
+        self.navigationController?.popViewController(animated: true)
     }
 
 }

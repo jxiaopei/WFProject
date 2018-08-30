@@ -13,6 +13,7 @@ import SnapKit
 class WFWeatherListTableViewCell: FoldingCell,UICollectionViewDelegate,UICollectionViewDataSource{
     
     var btnClickBlock:((_ cityName: String)->())?
+    var delBtnClickBlock:(()->())?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sevenDayWeatherArr.count
@@ -31,8 +32,8 @@ class WFWeatherListTableViewCell: FoldingCell,UICollectionViewDelegate,UICollect
             self.backImg.image = UIImage(named: imgName)
 //            self.backImg1.image = UIImage(named: imgName + "_open")
             self.backImg1.setImageToBlur(UIImage.init(named: imgName + "_open"), blurRadius: kLBBlurredImageDefaultBlurRadius, completionBlock: nil)
-            self.tempLabel.text =  String(format: "%.0f", (model.dataModel?.main?.temp)!) + "℃"// CelsiusOrFahrenheit(degree: CGFloat((model.dataModel?.main?.temp)!))
-            self.tempLabel1.text = String(format: "%.0f", (model.dataModel?.main?.temp)!) + "℃"
+            self.tempLabel.text =  MainViewCelsiusOrFahrenheit(degree: (model.dataModel?.main?.temp)!)
+            self.tempLabel1.text = MainViewCelsiusOrFahrenheit(degree: (model.dataModel?.main?.temp)!)
             self.descriptionLabel.text = model.dataModel?.weather?.first?.description
             self.descriptionLabel1.text = model.dataModel?.weather?.first?.description
             self.cityLabel.text = model.dataModel?.name
@@ -221,12 +222,26 @@ class WFWeatherListTableViewCell: FoldingCell,UICollectionViewDelegate,UICollect
         return btn
     }()
     
+    lazy var deleteBtn : UIButton = {
+        
+        let btn = UIButton()
+        btn.setImage(UIImage(named: "del_city"), for: .normal)
+        btn.addTarget(self, action: #selector(didClickDeleteBtn), for: .touchUpInside)
+        return btn
+    }()
+    
     @objc func didClickDetailBtn() {
         if(btnClickBlock != nil){
             btnClickBlock!((model.dataModel?.name)!)
         }
     }
-    
+
+    @objc func didClickDeleteBtn(){
+        if(delBtnClickBlock != nil){
+            delBtnClickBlock!()
+        }
+    }    
+
     override func awakeFromNib() {
         setupUI()
         super.awakeFromNib()
@@ -234,6 +249,7 @@ class WFWeatherListTableViewCell: FoldingCell,UICollectionViewDelegate,UICollect
     
     func setupUI()  {
         
+        self.backViewColor = UIColor.lightGray
         //关闭cell
         foregroundView.addSubview(backImg)
         backImg.snp.makeConstraints { (make) in
@@ -365,6 +381,13 @@ class WFWeatherListTableViewCell: FoldingCell,UICollectionViewDelegate,UICollect
             make.bottom.equalTo(-20)
             make.left.equalTo(20)
             make.right.equalTo(-20)
+        }
+        
+        containerView.addSubview(deleteBtn)
+        deleteBtn.snp.makeConstraints { (make) in
+            make.right.equalTo(-20)
+            make.top.equalTo(20)
+            make.size.equalTo(CGSize(width: 30, height: 30))
         }
     }
     

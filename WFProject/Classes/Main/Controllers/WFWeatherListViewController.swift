@@ -29,9 +29,14 @@ class WFWeatherListViewController: UITableViewController {
     }
     
     func setupNavigationItem() {
+        
+        let leftBtn = UIButton(type: .custom)
+        leftBtn.setImage(UIImage(named: "bar_menu"), for: .normal)
+        leftBtn.addTarget(self, action: #selector(leftBtnClick), for: .touchUpInside)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftBtn)
+        
         let rightBtn = UIButton(type: .custom)
         rightBtn.setImage(UIImage(named: "add_city"), for: .normal)
-        rightBtn.setTitleColor(MainColorWhite, for: .normal)
         rightBtn.addTarget(self, action: #selector(rightBtnClick), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBtn)
     }
@@ -41,7 +46,11 @@ class WFWeatherListViewController: UITableViewController {
         self.navigationController?.pushViewController(searchVC, animated: true)
     }
     
-    
+    @objc func leftBtnClick(){
+        let menuVC =  WFMenuViewController()
+        self.navigationController?.pushViewController(menuVC, animated: true)
+        
+    }
     
     func getData() {
         
@@ -56,9 +65,10 @@ class WFWeatherListViewController: UITableViewController {
             }
         }
         
-        if (cityId.isEmpty){
+        if (cityId.isEmpty && firstOpenApp()){
             cityId = "2643743"
             UserDefaults.standard.set(cityId, forKey: "cityId")
+            UserDefaults.standard.set(true, forKey: "firstOpenApp")
         }
         
         let parameters = ["APPID" : WFAppId] as [String : Any]
@@ -175,11 +185,7 @@ extension WFWeatherListViewController {
             tableView.endUpdates()
         }, completion: nil)
         
-        cell.btnClickBlock = {(cityName) in
-            let dailyVC = WFWeatherDailyViewController()
-            dailyVC.cityName = cityName
-            self.navigationController?.pushViewController(dailyVC, animated: true)
-        }
+        
     }
     
     override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -193,6 +199,35 @@ extension WFWeatherListViewController {
         cell.durationsForExpandedState = durations
         cell.durationsForCollapsedState = durations
         cell.model = cityNameArr[indexPath.row]
+        
+        cell.btnClickBlock = {(cityName) in
+            let dailyVC = WFWeatherDailyViewController()
+            dailyVC.cityName = cityName
+            self.navigationController?.pushViewController(dailyVC, animated: true)
+        }
+        
+        cell.delBtnClickBlock = { ()in
+            self.cityNameArr.remove(at: indexPath.row)
+            
+            var cityIdStr = ""
+            if(self.cityNameArr.count > 0){
+                for cityModel in self.cityNameArr {
+                    
+                    var sss = 0
+                    if let id = cityModel.dataModel?.id {
+                        sss = id
+                    }
+                    let idStr = "\(sss)"
+                    cityIdStr.append(idStr)
+                    cityIdStr.append(",")
+                }
+                cityIdStr = String(cityIdStr.prefix(cityIdStr.count - 1))
+            }
+            UserDefaults.standard.set(cityIdStr, forKey: "cityId")
+            self.tableView.deleteRows(at: [indexPath], with: .left)
+            self.tableView.reloadData()
+        }
+        
         return cell
     }
 }

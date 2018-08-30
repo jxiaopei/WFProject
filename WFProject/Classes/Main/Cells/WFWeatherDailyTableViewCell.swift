@@ -12,7 +12,7 @@ class WFWeatherDailyTableViewCell: UITableViewCell {
     
     var model : WFWeatherListDataModel! {
         didSet{
-            self.tempLabel.text = CelsiusOrFahrenheit(degree: CGFloat((model.main?.temp_min)!)) + "~" + CelsiusOrFahrenheit(degree: CGFloat((model.main?.temp_max)!))
+            self.tempLabel.text = CelsiusOrFahrenheit(degree: (model.main?.temp_min)!) + "~" + CelsiusOrFahrenheit(degree: (model.main?.temp_max)!)
             let imgName = WFWeatherImageManager.getWeatherCellBackgroundImage(id: (model.weather?.first?.id)!)
             self.dateLabel.text = TimeIntervalToTimeString(timeInterval: Int((model?.dt!)!))
             self.backImg.setImageToBlur(UIImage.init(named: imgName + "_open"), blurRadius: kLBBlurredImageDefaultBlurRadius, completionBlock: nil)

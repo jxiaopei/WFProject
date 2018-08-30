@@ -8,12 +8,13 @@
 
 import Foundation
 
-class WFWeatherDailyViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource{
+
+class WFWeatherDailyViewController: ViewController ,UITableViewDelegate,UITableViewDataSource{
     
     var dataModel : WFWeatherModel?
     var cityName : String?
-    var dataArr :[WFWeatherListDataModel] = []
-    
+    var dataArr :[WFSevenDaysWeatherModel] = []//[WFWeatherListDataModel] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "weather in hours"
@@ -43,24 +44,40 @@ class WFWeatherDailyViewController: UIViewController ,UITableViewDelegate,UITabl
     }
     
     func getData(){
-        let parameters = ["q" : cityName!, "APPID" : WFAppId]
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        WFNetWorkTool.shared.GET(urlString: "https://api.openweathermap.org/data/2.5/forecast", parameters: parameters, showHUD: true, success: {(respone) in
-             MBProgressHUD.hide(for: self.view, animated: true)
+//        let parameters = ["q" : cityName!, "APPID" : WFAppId]
+//        MBProgressHUD.showAdded(to: self.view, animated: true)
+//        WFNetWorkTool.shared.GET(urlString: "https://api.openweathermap.org/data/2.5/forecast", parameters: parameters, showHUD: true, success: {(respone) in
+//             MBProgressHUD.hide(for: self.view, animated: true)
+//            let dict = respone as! [String : Any]
+//            let data = try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+//
+//            do{
+//                let dataModel = try JSONDecoder().decode(WFWeatherModel.self,  from: data)
+//                self.dataModel = dataModel
+//                self.dataArr = dataModel.list!
+//                self.tableView.reloadData()
+//            }catch let error {
+//                print(error)
+//            }
+//
+//        }) { (error) in
+//             MBProgressHUD.hide(for: self.view, animated: true)
+//        }
+        
+        let parameters = ["q" : "Beijing","APPID" : WFAppId,"units" : "metric","cnt" : 7] as [String : Any]
+        WFNetWorkTool.shared.GET(urlString: "https://api.openweathermap.org/data/2.5/forecast/daily", parameters: parameters, showHUD: true, success: {(respone) in
             let dict = respone as! [String : Any]
-            let data = try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-            
+            let data = try! JSONSerialization.data(withJSONObject: dict["list"]!, options: .prettyPrinted)
             do{
-                let dataModel = try JSONDecoder().decode(WFWeatherModel.self,  from: data)
-                self.dataModel = dataModel
-                self.dataArr = dataModel.list!
-                self.tableView.reloadData()
+                let weatherDataArr = try JSONDecoder().decode([WFSevenDaysWeatherModel].self,  from: data)
+                self.dataArr.removeAll()
+                self.dataArr.append(contentsOf: weatherDataArr)
             }catch let error {
                 print(error)
             }
             
         }) { (error) in
-             MBProgressHUD.hide(for: self.view, animated: true)
+            
         }
     }
     
