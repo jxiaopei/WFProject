@@ -12,7 +12,7 @@ struct WFSevenDaysWeatherModel : Decodable {
     var temp : WFSevenDaysWeatherDataModel?
     var pressure :Float?
     var humidity : Float?
-    var weather: WFWeatherDataModel?
+    var weather: [WFWeatherDataModel]?
     var speed : Float?
     var deg : Float?
     var clouds : Float?

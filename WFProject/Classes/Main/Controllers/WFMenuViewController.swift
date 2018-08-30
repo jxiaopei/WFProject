@@ -10,8 +10,9 @@ import Foundation
 
 class WFMenuViewController : ViewController {
     
+
     let dataArr : [[String: String]] = [["icon":"icon_clear","title":"Clear cache"],["icon":"icon_about","title":"About Us"]]//["icon":"icon_feedback","title":"Feedback"],
-    
+
     let notificationView  : WFNotificationView = Bundle.main.loadNibNamed("WFNotificationView", owner: self, options: nil)?.first as! WFNotificationView
     
     let COrFSelcetView : WFCelsiusOrFahrenheitView = Bundle.main.loadNibNamed("WFCelsiusOrFahrenheitView", owner: self, options: nil)?.first as! WFCelsiusOrFahrenheitView
@@ -46,7 +47,7 @@ class WFMenuViewController : ViewController {
             make.height.equalTo(145)
         }
         COrFSelcetView.paperSwitch.setOn(F_or_C(), animated: false)
-        
+
         for i in 0 ..< dataArr.count {
             let dict = dataArr[i]
             addCellView(title: dict["title"]!, icon:dict["icon"]!, index: i)

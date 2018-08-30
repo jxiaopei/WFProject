@@ -10,17 +10,17 @@ import Foundation
 
 class WFWeatherDailyTableViewCell: UITableViewCell {
     
-    var model : WFWeatherListDataModel! {
+    var model : WFSevenDaysWeatherModel! {
         didSet{
-            self.tempLabel.text = CelsiusOrFahrenheit(degree: (model.main?.temp_min)!) + "~" + CelsiusOrFahrenheit(degree: (model.main?.temp_max)!)
+            self.tempLabel.text = CelsiusOrFahrenheit(degree: (model.temp?.min)!) + "~" + CelsiusOrFahrenheit(degree: (model.temp?.max)!)
             let imgName = WFWeatherImageManager.getWeatherCellBackgroundImage(id: (model.weather?.first?.id)!)
             self.dateLabel.text = TimeIntervalToTimeString(timeInterval: Int((model?.dt!)!))
             self.backImg.setImageToBlur(UIImage.init(named: imgName + "_open"), blurRadius: kLBBlurredImageDefaultBlurRadius, completionBlock: nil)
             self.iconImg.image = UIImage(named: WFWeatherImageManager.getWeatherIcon(id: (model.weather?.first?.id)!, icon: (model.weather?.first?.icon)!))
             self.descriptionLabel.text = model.weather?.first?.description
-            self.windLabel.text = String(format: "%.0f", (model.wind?.speed)!)  + "m/s"
-            self.humidityLabel.text = String(format: "%.0f", (model.main?.humidity)!) + "%"
-            self.pressureLabel.text = String(format: "%.0f", (model.main?.pressure)!) + "hpa"
+            self.windLabel.text = String(format: "%.0f", (model.speed)!)  + "m/s"
+            self.humidityLabel.text = String(format: "%.0f", (model.humidity)!) + "%"
+            self.pressureLabel.text = String(format: "%.0f", (model.pressure)!) + "hpa"
         }
     }
     
